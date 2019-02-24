@@ -33,17 +33,12 @@ public class DataController {
     }
 
 
-    @RequestMapping(value = "/{id}",
+    @RequestMapping(value = "",
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
-    public @ResponseBody DataPackage[] getData(@PathVariable("page") int page,
-                                               @PathVariable("year") String year,
-                                               @PathVariable("dataName") String dataName,
-                                               @PathVariable("publicationDate") String publicationDate,
-                                               @PathVariable("responseInstitute") String responseInstitute,
-                                               @PathVariable("responsePerson") String responsePerson,
+    public @ResponseBody DataPackage[] getData(DataQueryParameter param ,
                                                HttpServletRequest request, HttpServletResponse response){
-        DataQueryParameter param =new DataQueryParameter(page,year,dataName,publicationDate,responseInstitute,responsePerson);
+        //DataQueryParameter param =new DataQueryParameter(page,year,dataName,publicationDate,responseInstitute,responsePerson);
         DataPackage[] res=dataService.searchData(param);
         response.setStatus(201);
         return  res;
