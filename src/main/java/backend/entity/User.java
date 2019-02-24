@@ -9,11 +9,11 @@ import java.util.ArrayList;
 @Table(name="user")
 public class User {
     @Id
-    @Column(name="phoneNumber")
+    @Column(name="phonenumber")
     String phoneNumber;
     @Column(name="password")
     String password;
-    @Column(name="emailAddress")
+    @Column(name="emailaddress")
     String emailAddress;
     @Column(name="type")
     int type;//0 教师，1 学生， 2 科研工作者
