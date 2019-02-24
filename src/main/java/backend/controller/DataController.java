@@ -4,6 +4,7 @@ import backend.entity.DataPackage;
 import backend.entity.Demo;
 import backend.parameter.data.DataAddParameter;
 import backend.parameter.data.DataQueryParameter;
+import backend.response.commonResponse.DataQueryResponse;
 import backend.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +37,11 @@ public class DataController {
     @RequestMapping(value = "",
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
-    public @ResponseBody DataPackage[] getData(DataQueryParameter param ,
-                                               HttpServletRequest request, HttpServletResponse response){
+    public @ResponseBody
+    DataQueryResponse getData(DataQueryParameter param ,
+                              HttpServletRequest request, HttpServletResponse response){
         //DataQueryParameter param =new DataQueryParameter(page,year,dataName,publicationDate,responseInstitute,responsePerson);
-        DataPackage[] res=dataService.searchData(param);
+        DataQueryResponse res=dataService.searchData(param);
         response.setStatus(201);
         return  res;
     }
