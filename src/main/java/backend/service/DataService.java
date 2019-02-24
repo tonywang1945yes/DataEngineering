@@ -59,9 +59,16 @@ public class DataService {
         }
 
         ArrayList<DataPackage> datas=dataService.executeQuerySql(query);
-
-        DataPackage[] res= new DataPackage[datas.size()];
-        res=datas.toArray(res);
+        ArrayList<DataPackage> validDatas=new ArrayList<DataPackage>();
+        for(int i=(param.getPage()-1)*10;i<param.getPage()*10;i++){
+            if(i>=datas.size()){
+                break;
+            }else {
+                validDatas.add(datas.get(i));
+            }
+        }
+        DataPackage[] res= new DataPackage[validDatas.size()];
+        res=validDatas.toArray(res);
 
         return new DataQueryResponse(res,datas.size());
 
