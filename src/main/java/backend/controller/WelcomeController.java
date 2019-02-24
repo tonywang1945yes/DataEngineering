@@ -26,8 +26,8 @@ public class WelcomeController {
             produces = {"application/json", "application/xml"})
     public void userSignUp(@RequestBody SignUpParameter param,
                         HttpServletRequest request, HttpServletResponse response){
-        service.signUp(param);
-        response.setStatus(201);
+
+        response.setStatus(service.signUp(param));
 
     }
 

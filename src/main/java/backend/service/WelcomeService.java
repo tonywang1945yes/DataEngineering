@@ -14,9 +14,14 @@ public class WelcomeService {
         userService=new HibernateDao<>(new User());
     }
 
-    public void signUp(SignUpParameter param ){
+    public int signUp(SignUpParameter param ){
         User user=new User(param.getPhoneNumber(),param.getPassword(),param.getEmailAddress(),param.getType(),param.getUsername());
-        userService.add(user);
+        if(userService.checkKeyExists(param.getPhoneNumber())){
+            return 500;
+        }else {
+            userService.add(user);
+            return 201;
+        }
     }
 
     public int userLogin(UserLoginParameter param){
