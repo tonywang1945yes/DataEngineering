@@ -20,22 +20,22 @@ public class WelcomeController {
 
     public WelcomeController(){}
 
-    @RequestMapping(value = "",
+    @RequestMapping(value = "/signup",
             method = RequestMethod.POST,
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
-    public void addDemo(@RequestBody SignUpParameter param,
+    public void userSignUp(@RequestBody SignUpParameter param,
                         HttpServletRequest request, HttpServletResponse response){
         service.signUp(param);
         response.setStatus(201);
 
     }
 
-    @RequestMapping(value = "",
+    @RequestMapping(value = "/login",
             method = RequestMethod.POST,
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
-    public void addDemo(@RequestBody UserLoginParameter param,
+    public void userLogin(@RequestBody UserLoginParameter param,
                         HttpServletRequest request, HttpServletResponse response){
 
         response.setStatus(service.userLogin(param));
