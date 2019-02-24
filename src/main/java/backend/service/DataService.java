@@ -5,6 +5,7 @@ import backend.dao.service.BasicDatabaseService;
 import backend.entity.DataPackage;
 import backend.parameter.data.DataAddParameter;
 import backend.parameter.data.DataQueryParameter;
+import backend.response.commonResponse.DataQueryResponse;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -26,7 +27,7 @@ public class DataService {
         dataService.add(dataPackage);
     }
 
-    public DataPackage[] searchData(DataQueryParameter param){
+    public DataQueryResponse searchData(DataQueryParameter param){
         ArrayList<String> queryStr=new ArrayList<>();
         if(param.getDataName()!=null&&!param.getDataName().equals("")){
             queryStr.add(" d.dataName='"+param.getDataName()+"' ");
@@ -61,7 +62,8 @@ public class DataService {
 
         DataPackage[] res= new DataPackage[datas.size()];
         res=datas.toArray(res);
-        return res;
+
+        return new DataQueryResponse(res,datas.size());
 
     }
 }
