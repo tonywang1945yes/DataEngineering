@@ -1,7 +1,7 @@
 package backend.parameter.data;
 
-public class DataAddParameter {
-
+public class DataQueryParameter {
+    int page;
 
     String year;//
 
@@ -9,21 +9,25 @@ public class DataAddParameter {
 
     String publicationDate;//
 
-    String inputDate;
-
-    String firstResult;
-
-    String finalResult;
-
-    String sourceUrl;
-
     String responseInstitute;//
 
     String responsePerson;//
 
-    String url;//云盘链接
+    public DataQueryParameter(int page, String year, String dataName, String publicationDate, String responseInstitute, String responsePerson) {
+        this.page = page;
+        this.year = year;
+        this.dataName = dataName;
+        this.publicationDate = publicationDate;
+        this.responseInstitute = responseInstitute;
+        this.responsePerson = responsePerson;
+    }
 
-    public DataAddParameter() {
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 
     public String getYear() {
@@ -50,38 +54,6 @@ public class DataAddParameter {
         this.publicationDate = publicationDate;
     }
 
-    public String getInputDate() {
-        return inputDate;
-    }
-
-    public void setInputDate(String inputDate) {
-        this.inputDate = inputDate;
-    }
-
-    public String getFirstResult() {
-        return firstResult;
-    }
-
-    public void setFirstResult(String firstResult) {
-        this.firstResult = firstResult;
-    }
-
-    public String getFinalResult() {
-        return finalResult;
-    }
-
-    public void setFinalResult(String finalResult) {
-        this.finalResult = finalResult;
-    }
-
-    public String getSourceUrl() {
-        return sourceUrl;
-    }
-
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
-    }
-
     public String getResponseInstitute() {
         return responseInstitute;
     }
@@ -98,11 +70,6 @@ public class DataAddParameter {
         this.responsePerson = responsePerson;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public DataQueryParameter() {
     }
 }

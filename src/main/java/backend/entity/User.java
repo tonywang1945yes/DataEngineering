@@ -3,7 +3,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
 @Table(name="user")
@@ -19,6 +21,8 @@ public class User {
     int type;//0 教师，1 学生， 2 科研工作者
     @Column(name="username")
     String username;
+    @Column(name="date")
+    String date;//注册时间
 
     public User() {
     }
@@ -69,5 +73,16 @@ public class User {
         this.emailAddress = emailAddress;
         this.type = type;
         this.username = username;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");// 置日期格式
+        String dateString=df.format(new Date());// new Date()为获取当前系统时间
+        this.date=dateString;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
