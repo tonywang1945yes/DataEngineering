@@ -41,5 +41,18 @@ public class WelcomeController {
         response.setStatus(service.userLogin(param));
 
     }
+    @RequestMapping(value = "/admin",
+            method = RequestMethod.POST,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    public void adminLogin(@RequestBody Demo demo,
+                           HttpServletRequest request, HttpServletResponse response){
+        System.out.println("admin login invoked");
+        if(service.adminLogin(demo.getUsername(),demo.getPassword())) {
+            response.setStatus(201);
+        }else {
+            response.setStatus(404);
+        }
+    }
 
 }

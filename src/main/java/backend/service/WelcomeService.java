@@ -31,4 +31,12 @@ public class WelcomeService {
             return 404;//手机号不存在
         }
     }
+    //管理员登录
+    public boolean adminLogin (String username,String password){
+        if(username.equals("admin")&&password.equals("123")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
