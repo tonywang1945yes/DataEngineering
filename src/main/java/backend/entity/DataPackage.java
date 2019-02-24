@@ -14,19 +14,19 @@ public class DataPackage {
     String year;
     @Column(name="dataName")
     String dataName;
-    @Column(name="publicationDate")
+    @Column(name="publicationdate")
     String publicationDate;
-    @Column(name="inputDate")
+    @Column(name="inputdate")
     String inputDate;
-    @Column(name="firstResult")
+    @Column(name="firstresult")
     String firstResult;
-    @Column(name="finalResult")
+    @Column(name="finalresult")
     String finalResult;
-    @Column(name="sourceUrl")
+    @Column(name="sourceurl")
     String sourceUrl;
-    @Column(name="responseInstitute")
+    @Column(name="responseinstitute")
     String responseInstitute;
-    @Column(name="responsePerson")
+    @Column(name="responseperson")
     String responsePerson;
     @Column(name="url")
     String url;//云盘链接
