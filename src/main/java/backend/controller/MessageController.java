@@ -45,7 +45,7 @@ public class MessageController {
             method = RequestMethod.PUT,
             produces = {"application/json", "application/xml"})
     public void updateStatus(@PathVariable("id") String id,
-                           HttpServletRequest request, HttpServletResponse response) {
+                             HttpServletRequest request, HttpServletResponse response) {
         service.markRead(id);
         response.setStatus(201);
     }
@@ -54,8 +54,17 @@ public class MessageController {
             method = RequestMethod.PUT,
             produces = {"application/json", "application/xml"})
     public void updateImportance(@PathVariable("id") String id,
-                           HttpServletRequest request, HttpServletResponse response) {
+                                 HttpServletRequest request, HttpServletResponse response) {
         service.markImportance(id);
+        response.setStatus(201);
+    }
+
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.DELETE,
+            produces = {"application/json", "application/xml"})
+    public void deleteMessage(@PathVariable("id") String id, HttpServletRequest request,
+                              HttpServletResponse response) {
+        service.deleteMsg(id);
         response.setStatus(201);
     }
 

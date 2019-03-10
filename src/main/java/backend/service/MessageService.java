@@ -50,4 +50,12 @@ public class MessageService {
             customService.update(c);
         }
     }
+
+    public void deleteMsg(String id) {
+        if (id.startsWith("m1")) {
+            corporationService.delete(id);
+        } else if (id.startsWith("m2")) {
+            customService.delete(id);
+        }
+    }
 }
