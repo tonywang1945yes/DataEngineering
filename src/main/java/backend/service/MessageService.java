@@ -7,7 +7,10 @@ import backend.entity.Custom;
 import backend.parameter.bill.BillAddParameter;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
+import backend.parameter.message.MessageGetParameter;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class MessageService {
@@ -57,5 +60,37 @@ public class MessageService {
         } else if (id.startsWith("m2")) {
             customService.delete(id);
         }
+    }
+
+    public Corporation[] getCorporationMsg(MessageGetParameter param) {
+        ArrayList<Corporation> res = new ArrayList<>();
+        if (param.getHasImportance() == 1) {
+            res = corporationService.executeQuerySql("select c from Corporation c where c.importance = 1");
+        } else {
+            if (param.getHasRead() == 1) {
+                res = corporationService.executeQuerySql("select c from Corporation c where c.status = 1");
+            } else {
+                res = corporationService.executeQuerySql("select c from Corporation c where c.status = 0");
+            }
+        }
+        Corporation[] result = new Corporation[res.size()];
+        result = res.toArray(result);
+        return result;
+    }
+
+    public Custom[] getCustomMsg(MessageGetParameter param) {
+        ArrayList<Custom> res = new ArrayList<>();
+        if (param.getHasImportance() == 1) {
+            res = customService.executeQuerySql("select c from Custom c where c.importance = 1");
+        } else {
+            if (param.getHasRead() == 1) {
+                res = customService.executeQuerySql("select c from Custom c where c.status = 1");
+            } else {
+                res = customService.executeQuerySql("select c from Custom c where c.status = 0");
+            }
+        }
+        Custom[] result = new Custom[res.size()];
+        result = res.toArray(result);
+        return result;
     }
 }

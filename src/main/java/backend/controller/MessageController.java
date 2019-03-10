@@ -1,9 +1,12 @@
 package backend.controller;
 
 
+import backend.entity.Corporation;
+import backend.entity.Custom;
 import backend.entity.Demo;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
+import backend.parameter.message.MessageGetParameter;
 import backend.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -66,6 +69,28 @@ public class MessageController {
                               HttpServletResponse response) {
         service.deleteMsg(id);
         response.setStatus(201);
+    }
+
+    @RequestMapping(value = "/corporation",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    Corporation[] getCorporation(MessageGetParameter param,
+                          HttpServletRequest request, HttpServletResponse response) {
+        Corporation[] res = service.getCorporationMsg(param);
+        response.setStatus(201);
+        return res;
+    }
+
+    @RequestMapping(value = "/custom",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    Custom[] getCustom(MessageGetParameter param,
+                     HttpServletRequest request, HttpServletResponse response) {
+        Custom[] res = service.getCustomMsg(param);
+        response.setStatus(201);
+        return res;
     }
 
 }
