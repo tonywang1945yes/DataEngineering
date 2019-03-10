@@ -3,6 +3,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name="bill")
@@ -29,15 +31,19 @@ public class Bill {
     @Column(name="data_type")
     int dataType=0;//0,无；1，年鉴；2，区划
 
-    public Bill(String bid, String phoneNumber, String emailAddress, String uid, String province, String city, String time, String latest_time, int type, int dataType) {
-        this.bid = bid;
+    public Bill( String phoneNumber, String emailAddress, String uid, String province, String city, int type, int dataType) {
+        int id=100000+(int)(Math.random()*900000);
+        String random_id="b"+Integer.toString(id);
+        this.bid = random_id;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.uid = uid;
         this.province = province;
         this.city = city;
-        this.time = time;
-        this.latest_time = latest_time;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        this.time = date;
+        this.latest_time = "";
         this.type = type;
         this.dataType = dataType;
     }
