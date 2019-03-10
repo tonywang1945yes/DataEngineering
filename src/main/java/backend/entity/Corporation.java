@@ -1,4 +1,5 @@
 package backend.entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,20 +8,31 @@ import javax.persistence.Table;
 @Entity
 public class Corporation {
     @Id
-    @Column(name="mid")
-    String mid="";
-    @Column(name="uid")
-    String uid="";
-    @Column(name="contact")
-    String contact="";
-    @Column(name="requirment")
-    String requirment="";
-    @Column(name="status")
-    int status=0;//0,未读；1，已读
-    @Column(name="importance")
-    int importance=0;//0,不重要；1，重要
+    @Column(name = "mid")
+    String mid = "";
+    @Column(name = "uid")
+    String uid = "";
+    @Column(name = "contact")
+    String contact = "";
+    @Column(name = "requirement")
+    String requirement = "";
+    @Column(name = "status")
+    int status = 0;//0,未读；1，已读
+    @Column(name = "importance")
+    int importance = 0;//0,不重要；1，重要
 
     public Corporation() {
+    }
+
+    public Corporation(String uid, String contact, String requirement, int status, int importance) {
+        int id = 100000 + (int) (Math.random() * 900000);
+        String random_id = "m1" + Integer.toString(id);
+        this.mid = random_id;
+        this.uid = uid;
+        this.contact = contact;
+        this.requirement = requirement;
+        this.status = status;
+        this.importance = importance;
     }
 
     public String getMid() {
@@ -47,12 +59,12 @@ public class Corporation {
         this.contact = contact;
     }
 
-    public String getRequirment() {
-        return requirment;
+    public String getRequirement() {
+        return requirement;
     }
 
-    public void setRequirment(String requirment) {
-        this.requirment = requirment;
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 
     public int getStatus() {

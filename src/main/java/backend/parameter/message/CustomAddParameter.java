@@ -1,41 +1,20 @@
-package backend.entity;
+package backend.parameter.message;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class CustomAddParameter {
+    String uid;
+    String contact;
+    String requirement;
+    int status;
+    int importance;
+    String year;
+    String name;
+    String province;
+    String city;
 
-@Entity
-public class Custom {
-    @Id
-    @Column(name = "mid")
-    String mid = "";
-    @Column(name = "uid")
-    String uid = "";
-    @Column(name = "contact")
-    String contact = "";
-    @Column(name = "requirement")
-    String requirement = "";
-    @Column(name = "status")
-    int status = 0;//0,未读；1，已读
-    @Column(name = "importance")
-    int importance = 0;//0,不重要；1，重要
-    @Column(name = "year")
-    String year = "";
-    @Column(name = "name")
-    String name = "";
-    @Column(name = "province")
-    String province = "";
-    @Column(name = "city")
-    String city = "";
-
-    public Custom() {
+    public CustomAddParameter() {
     }
 
-    public Custom(String uid, String contact, String requirement, int status, int importance, String year, String name, String province, String city) {
-        int id = 100000 + (int) (Math.random() * 900000);
-        String random_id = "m2" + Integer.toString(id);
-        this.mid = random_id;
+    public CustomAddParameter(String uid, String contact, String requirement, int status, int importance, String year, String name, String province, String city) {
         this.uid = uid;
         this.contact = contact;
         this.requirement = requirement;
@@ -45,14 +24,6 @@ public class Custom {
         this.name = name;
         this.province = province;
         this.city = city;
-    }
-
-    public String getMid() {
-        return mid;
-    }
-
-    public void setMid(String mid) {
-        this.mid = mid;
     }
 
     public String getUid() {
@@ -71,12 +42,12 @@ public class Custom {
         this.contact = contact;
     }
 
-    public String getRequirment() {
+    public String getRequirement() {
         return requirement;
     }
 
-    public void setRequirment(String requirment) {
-        this.requirement = requirment;
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
     }
 
     public int getStatus() {
