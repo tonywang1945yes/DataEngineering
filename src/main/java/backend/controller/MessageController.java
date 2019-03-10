@@ -1,6 +1,7 @@
 package backend.controller;
 
 
+import backend.entity.Demo;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
 import backend.service.MessageService;
@@ -37,6 +38,15 @@ public class MessageController {
     public void addBill(@RequestBody CustomAddParameter param,
                         HttpServletRequest request, HttpServletResponse response) {
         service.addCustom(param);
+        response.setStatus(201);
+    }
+
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT,
+            produces = {"application/json", "application/xml"})
+    public void updateDemo(@PathVariable("id") String id ,
+                           HttpServletRequest request, HttpServletResponse response){
+        service.markRead(id);
         response.setStatus(201);
     }
 
