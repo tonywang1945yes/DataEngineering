@@ -3,13 +3,13 @@ package backend.parameter.data;
 public class DataQueryParameter {
     int page;
 
-    String year;//
+    String year;
 
-    String dataName;//
+    String dataName;
 
     String publicationDate;//
 
-    String responseInstitute;//
+    String responseInstitute;
 
     String responsePerson;//
 
