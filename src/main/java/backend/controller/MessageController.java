@@ -41,14 +41,22 @@ public class MessageController {
         response.setStatus(201);
     }
 
-    @RequestMapping(value = "/{id}",
+    @RequestMapping(value = "/read/{id}",
             method = RequestMethod.PUT,
             produces = {"application/json", "application/xml"})
-    public void updateDemo(@PathVariable("id") String id ,
-                           HttpServletRequest request, HttpServletResponse response){
+    public void updateStatus(@PathVariable("id") String id,
+                           HttpServletRequest request, HttpServletResponse response) {
         service.markRead(id);
         response.setStatus(201);
     }
 
+    @RequestMapping(value = "/importance/{id}",
+            method = RequestMethod.PUT,
+            produces = {"application/json", "application/xml"})
+    public void updateImportance(@PathVariable("id") String id,
+                           HttpServletRequest request, HttpServletResponse response) {
+        service.markImportance(id);
+        response.setStatus(201);
+    }
 
 }

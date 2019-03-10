@@ -27,14 +27,26 @@ public class MessageService {
         customService.add(new Custom(param.getContact(), param.getUid(), param.getRequirement(), param.getStatus(), param.getImportance(), param.getYear(), param.getName(), param.getProvince(), param.getCity()));
     }
 
-    public void markRead(String id){
-        if(id.startsWith("m1")){
-            Corporation c=corporationService.findByKey(id);
+    public void markRead(String id) {
+        if (id.startsWith("m1")) {
+            Corporation c = corporationService.findByKey(id);
             c.setStatus(1);
             corporationService.update(c);
-        }else if(id.startsWith("m2")){
-            Custom c=customService.findByKey(id);
+        } else if (id.startsWith("m2")) {
+            Custom c = customService.findByKey(id);
             c.setStatus(1);
+            customService.update(c);
+        }
+    }
+
+    public void markImportance(String id) {
+        if (id.startsWith("m1")) {
+            Corporation c = corporationService.findByKey(id);
+            c.setImportance(1);
+            corporationService.update(c);
+        } else if (id.startsWith("m2")) {
+            Custom c = customService.findByKey(id);
+            c.setImportance(1);
             customService.update(c);
         }
     }
