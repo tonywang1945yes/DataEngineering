@@ -1,8 +1,10 @@
 package backend.controller;
 
 
+import backend.entity.Bill;
 import backend.entity.Demo;
 import backend.parameter.bill.BillAddParameter;
+import backend.parameter.bill.BillQueryParameter;
 import backend.service.BillService;
 import backend.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,24 @@ public class BillController {
         response.setStatus(201);
     }
 
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.PUT,
+            produces = {"application/json", "application/xml"})
+    public void updateDemo(@PathVariable("id") String id,
+                           HttpServletRequest request, HttpServletResponse response){
+        service.sendBill(id);
+        response.setStatus(201);
+    }
+
+    @RequestMapping(value = "",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    Bill[] getBills(BillQueryParameter param ,
+                    HttpServletRequest request, HttpServletResponse response){
+
+        response.setStatus(201);
+        return  service.searchBills(param);
+    }
 
 }
