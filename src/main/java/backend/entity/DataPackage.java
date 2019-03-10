@@ -31,6 +31,14 @@ public class DataPackage {
     @Column(name="url")
     String url;//云盘链接
 
+    //TODO
+
+    /**
+     * 省
+     * 市
+     * 年鉴（区划）
+     */
+
     public DataPackage() {
     }
 
