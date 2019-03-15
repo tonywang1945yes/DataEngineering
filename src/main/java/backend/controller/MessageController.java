@@ -30,6 +30,7 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public void addBill(@RequestBody CorporationAddParameter param,
                         HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(param.getContact());
         service.addCorporation(param);
         response.setStatus(201);
     }
@@ -40,6 +41,7 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public void addBill(@RequestBody CustomAddParameter param,
                         HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(param.getContact());
         service.addCustom(param);
         response.setStatus(201);
     }
@@ -76,7 +78,7 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public @ResponseBody
     Corporation[] getCorporation(MessageGetParameter param,
-                          HttpServletRequest request, HttpServletResponse response) {
+                                 HttpServletRequest request, HttpServletResponse response) {
         Corporation[] res = service.getCorporationMsg(param);
         response.setStatus(201);
         return res;
@@ -87,7 +89,7 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public @ResponseBody
     Custom[] getCustom(MessageGetParameter param,
-                     HttpServletRequest request, HttpServletResponse response) {
+                       HttpServletRequest request, HttpServletResponse response) {
         Custom[] res = service.getCustomMsg(param);
         response.setStatus(201);
         return res;

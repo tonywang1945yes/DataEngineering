@@ -1,37 +1,44 @@
 package backend.entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="dataPackage")
+@Table(name = "data_package")
 public class DataPackage {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     String id;
-    @Column(name="year")
+    @Column(name = "year")
     String year;
-    @Column(name="dataName")
+    @Column(name = "data_name")
     String dataName;
-    @Column(name="publicationdate")
+    @Column(name = "publication_date")
     String publicationDate;
-    @Column(name="inputdate")
+    @Column(name = "input_date")
     String inputDate;
-    @Column(name="firstresult")
+    @Column(name = "first_result")
     String firstResult;
-    @Column(name="finalresult")
+    @Column(name = "final_result")
     String finalResult;
-    @Column(name="sourceurl")
+    @Column(name = "source_url")
     String sourceUrl;
-    @Column(name="responseinstitute")
+    @Column(name = "response_institute")
     String responseInstitute;
-    @Column(name="responseperson")
+    @Column(name = "response_person")
     String responsePerson;
-    @Column(name="url")
+    @Column(name = "url")
     String url;//云盘链接
+    @Column(name = "province")
+    String province;
+    @Column(name = "city")
+    String city;
+    @Column(name = "data_type")
+    String dataType;
 
-    //TODO
+    //TODO 出来挨打
 
     /**
      * 省
@@ -40,6 +47,23 @@ public class DataPackage {
      */
 
     public DataPackage() {
+    }
+
+    public DataPackage(String id, String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url, String province, String city, String dataType) {
+        this.id = id;
+        this.year = year;
+        this.dataName = dataName;
+        this.publicationDate = publicationDate;
+        this.inputDate = inputDate;
+        this.firstResult = firstResult;
+        this.finalResult = finalResult;
+        this.sourceUrl = sourceUrl;
+        this.responseInstitute = responseInstitute;
+        this.responsePerson = responsePerson;
+        this.url = url;
+        this.province = province;
+        this.city = city;
+        this.dataType = dataType;
     }
 
     public String getId() {
@@ -130,17 +154,27 @@ public class DataPackage {
         this.url = url;
     }
 
-    public DataPackage(String id, String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url) {
-        this.id = id;
-        this.year = year;
-        this.dataName = dataName;
-        this.publicationDate = publicationDate;
-        this.inputDate = inputDate;
-        this.firstResult = firstResult;
-        this.finalResult = finalResult;
-        this.sourceUrl = sourceUrl;
-        this.responseInstitute = responseInstitute;
-        this.responsePerson = responsePerson;
-        this.url = url;
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 }

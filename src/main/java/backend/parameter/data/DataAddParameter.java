@@ -23,6 +23,12 @@ public class DataAddParameter {
 
     String url;//云盘链接
 
+    String province;
+
+    String city;
+
+    String dataType;
+
     public DataAddParameter() {
     }
 
@@ -104,5 +110,29 @@ public class DataAddParameter {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 }

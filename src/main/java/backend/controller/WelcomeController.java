@@ -18,14 +18,15 @@ public class WelcomeController {
     @Autowired
     WelcomeService service;
 
-    public WelcomeController(){}
+    public WelcomeController() {
+    }
 
     @RequestMapping(value = "/signup",
             method = RequestMethod.POST,
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
     public void userSignUp(@RequestBody SignUpParameter param,
-                        HttpServletRequest request, HttpServletResponse response){
+                           HttpServletRequest request, HttpServletResponse response) {
 
         response.setStatus(service.signUp(param));
 
@@ -36,23 +37,32 @@ public class WelcomeController {
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
     public void userLogin(@RequestBody UserLoginParameter param,
-                        HttpServletRequest request, HttpServletResponse response){
+                          HttpServletRequest request, HttpServletResponse response) {
 
         response.setStatus(service.userLogin(param));
 
     }
+
     @RequestMapping(value = "/admin",
             method = RequestMethod.POST,
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
     public void adminLogin(@RequestBody Demo demo,
-                           HttpServletRequest request, HttpServletResponse response){
+                           HttpServletRequest request, HttpServletResponse response) {
         System.out.println("admin login invoked");
-        if(service.adminLogin(demo.getUsername(),demo.getPassword())) {
+        if (service.adminLogin(demo.getUsername(), demo.getPassword())) {
             response.setStatus(201);
-        }else {
+        } else {
             response.setStatus(404);
         }
+    }
+
+    @RequestMapping(value = "/{id}",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    String getUserName(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
+        return service.getUserName(id);
     }
 
 }
