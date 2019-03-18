@@ -5,6 +5,7 @@ import backend.dao.service.BasicDatabaseService;
 import backend.entity.DataPackage;
 import backend.parameter.data.DataAddParameter;
 import backend.parameter.data.DataQueryParameter;
+import backend.parameter.data.DataUpdateParameter;
 import backend.response.commonResponse.DataQueryResponse;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,29 @@ public class DataService {
                 param.getFirstResult(), param.getFinalResult(), param.getSourceUrl(), param.getResponseInstitute(), param.getResponsePerson(), param.getUrl(),
                 param.getProvince(), param.getCity(), param.getDataType());
         dataService.add(dataPackage);
+    }
+
+    public void deleteData(String id) {
+        dataService.delete(id);
+    }
+
+    public void updateData(DataUpdateParameter param) {
+        System.out.println(param.getId());
+        DataPackage dataPackage = dataService.findByKey(param.getId());
+        dataPackage.setCity(param.getCity());
+        dataPackage.setDataName(param.getDataName());
+        dataPackage.setDataType(param.getDataType());
+        dataPackage.setFinalResult(param.getFinalResult());
+        dataPackage.setFirstResult(param.getFirstResult());
+        dataPackage.setInputDate(param.getInputDate());
+        dataPackage.setProvince(param.getProvince());
+        dataPackage.setPublicationDate(param.getPublicationDate());
+        dataPackage.setResponseInstitute(param.getResponseInstitute());
+        dataPackage.setResponsePerson(param.getResponsePerson());
+        dataPackage.setSourceUrl(param.getSourceUrl());
+        dataPackage.setUrl(param.getUrl());
+        dataPackage.setYear(param.getYear());
+        dataService.update(dataPackage);
     }
 
     public DataQueryResponse searchData(DataQueryParameter param) {

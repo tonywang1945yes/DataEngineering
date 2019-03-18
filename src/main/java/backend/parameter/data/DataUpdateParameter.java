@@ -1,6 +1,11 @@
 package backend.parameter.data;
 
-public class DataAddParameter {
+/**
+ * @author Wen Sun
+ */
+public class DataUpdateParameter {
+
+    String id;
 
     String year;//
 
@@ -28,10 +33,11 @@ public class DataAddParameter {
 
     String dataType;
 
-    public DataAddParameter() {
+    public DataUpdateParameter() {
     }
 
-    public DataAddParameter(String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url, String province, String city, String dataType) {
+    public DataUpdateParameter(String id, String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url, String province, String city, String dataType) {
+        this.id = id;
         this.year = year;
         this.dataName = dataName;
         this.publicationDate = publicationDate;
@@ -45,6 +51,14 @@ public class DataAddParameter {
         this.province = province;
         this.city = city;
         this.dataType = dataType;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getYear() {

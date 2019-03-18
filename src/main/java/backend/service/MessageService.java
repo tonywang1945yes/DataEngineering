@@ -4,7 +4,6 @@ import backend.dao.impl.HibernateDao;
 import backend.dao.service.BasicDatabaseService;
 import backend.entity.Corporation;
 import backend.entity.Custom;
-import backend.parameter.bill.BillAddParameter;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
 import backend.parameter.message.MessageGetParameter;

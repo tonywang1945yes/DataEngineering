@@ -10,6 +10,14 @@ public class SignUpParameter {
     public SignUpParameter() {
     }
 
+    public SignUpParameter(String username, String phoneNumber, String password, String emailAddress, int type) {
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.emailAddress = emailAddress;
+        this.type = type;
+    }
+
     public String getUsername() {
         return username;
     }

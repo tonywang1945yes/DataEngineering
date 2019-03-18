@@ -5,15 +5,14 @@ public class LoginParameter {
     private String password;
     private String captcha;
 
+    public LoginParameter() {
+    }
+
     public LoginParameter(String emailAddress, String password, String captcha) {
         this.emailAddress = emailAddress;
         this.password = password;
         this.captcha = captcha;
     }
-
-    public LoginParameter() {
-    }
-
 
     public String getEmailAddress() {
         return emailAddress;

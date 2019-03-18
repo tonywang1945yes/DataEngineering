@@ -7,6 +7,11 @@ public class MessageGetParameter {
     public MessageGetParameter() {
     }
 
+    public MessageGetParameter(int hasRead, int hasImportance) {
+        this.hasRead = hasRead;
+        this.hasImportance = hasImportance;
+    }
+
     public int getHasRead() {
         return hasRead;
     }

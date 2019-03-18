@@ -2,8 +2,11 @@ package backend.controller;
 
 
 import backend.entity.Demo;
+import backend.entity.User;
+import backend.parameter.welcome.UserQueryParameter;
 import backend.parameter.welcome.SignUpParameter;
 import backend.parameter.welcome.UserLoginParameter;
+import backend.response.commonResponse.UserQueryResponse;
 import backend.service.WelcomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -63,6 +66,16 @@ public class WelcomeController {
     public @ResponseBody
     String getUserName(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response) {
         return service.getUserName(id);
+    }
+
+    @RequestMapping(value = "/users",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    UserQueryResponse getUserInfo(UserQueryParameter param, HttpServletRequest request, HttpServletResponse response) {
+        UserQueryResponse res = service.getUserInfo(param);
+        response.setStatus(201);
+        return res;
     }
 
 }

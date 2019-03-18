@@ -5,6 +5,8 @@ public class VerifyMailParameter {
     public String emailAddress;
     public String code;
 
+    public VerifyMailParameter() {
+    }
 
     public VerifyMailParameter(String emailAddress, String code) {
         this.emailAddress=emailAddress;

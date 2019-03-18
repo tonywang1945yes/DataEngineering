@@ -5,6 +5,8 @@ public class SendMailParameter {
     public String name;
     public String emailAddress;
 
+    public SendMailParameter() {
+    }
 
     public SendMailParameter(String name, String emailAddress){
         this.name=name;
