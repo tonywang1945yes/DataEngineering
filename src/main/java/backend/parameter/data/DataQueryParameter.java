@@ -19,10 +19,12 @@ public class DataQueryParameter {
 
     String dataType;
 
+    String downloadDate;
+
     public DataQueryParameter() {
     }
 
-    public DataQueryParameter(int page, String year, String dataName, String publicationDate, String responseInstitute, String responsePerson, String dataType, String province, String city) {
+    public DataQueryParameter(int page, String year, String dataName, String publicationDate, String responseInstitute, String responsePerson, String dataType, String province, String city, String downloadDate) {
         this.page = page;
         this.year = year;
         this.dataName = dataName;
@@ -32,6 +34,7 @@ public class DataQueryParameter {
         this.dataType = dataType;
         this.province = province;
         this.city = city;
+        this.downloadDate = downloadDate;
     }
 
     public int getPage() {
@@ -104,5 +107,13 @@ public class DataQueryParameter {
 
     public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+
+    public String getDownloadDate() {
+        return downloadDate;
+    }
+
+    public void setDownloadDate(String downloadDate) {
+        this.downloadDate = downloadDate;
     }
 }

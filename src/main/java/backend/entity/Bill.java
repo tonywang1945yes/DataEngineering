@@ -1,4 +1,5 @@
 package backend.entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,33 +8,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name="bill")
+@Table(name = "bill")
 public class Bill {
     @Id
-    @Column(name="bid")
+    @Column(name = "bid")
     String bid;
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     String phoneNumber;
-    @Column(name="email_address")
+    @Column(name = "email_address")
     String emailAddress;
-    @Column(name="uid")
+    @Column(name = "uid")
     String uid;
-    @Column(name="province")
+    @Column(name = "province")
     String province;
-    @Column(name="city")
+    @Column(name = "city")
     String city;
-    @Column(name="time")
+    @Column(name = "time")
     String time;
-    @Column(name="latest_time")
+    @Column(name = "latest_time")
     String latest_time;
-    @Column(name="type")
-    int type=0;//0,更新；1，不需要更新的加工；2，需要更新的加工；3，打包下载
-    @Column(name="data_type")
-    int dataType=0;//0,无；1，年鉴；2，区划
+    @Column(name = "type")
+    int type = 0;//0,更新；1，不需要更新的加工；2，需要更新的加工；3，打包下载
+    @Column(name = "data_type")
+    int dataType = 0;//0,无；1，年鉴；2，区划
 
-    public Bill( String phoneNumber, String emailAddress, String uid, String province, String city, int type, int dataType) {
-        int id=100000+(int)(Math.random()*900000);
-        String random_id="b"+Integer.toString(id);
+    public Bill(String phoneNumber, String emailAddress, String uid, String province, String city, int type, int dataType) {
+        int id = 100000 + (int) (Math.random() * 900000);
+        String random_id = "b" + Integer.toString(id);
         this.bid = random_id;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;

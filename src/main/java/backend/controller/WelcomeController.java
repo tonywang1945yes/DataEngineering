@@ -52,7 +52,6 @@ public class WelcomeController {
             produces = {"application/json", "application/xml"})
     public void adminLogin(@RequestBody Demo demo,
                            HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("admin login invoked");
         if (service.adminLogin(demo.getUsername(), demo.getPassword())) {
             response.setStatus(201);
         } else {

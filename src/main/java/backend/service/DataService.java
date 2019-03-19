@@ -26,7 +26,7 @@ public class DataService {
         String dataId = "d" + Integer.toString(id);
         DataPackage dataPackage = new DataPackage(dataId, param.getYear(), param.getDataName(), param.getPublicationDate(), param.getInputDate(),
                 param.getFirstResult(), param.getFinalResult(), param.getSourceUrl(), param.getResponseInstitute(), param.getResponsePerson(), param.getUrl(),
-                param.getProvince(), param.getCity(), param.getDataType());
+                param.getProvince(), param.getCity(), param.getDataType(), 0, "");
         dataService.add(dataPackage);
     }
 
@@ -35,7 +35,6 @@ public class DataService {
     }
 
     public void updateData(DataUpdateParameter param) {
-        System.out.println(param.getId());
         DataPackage dataPackage = dataService.findByKey(param.getId());
         dataPackage.setCity(param.getCity());
         dataPackage.setDataName(param.getDataName());
@@ -78,6 +77,9 @@ public class DataService {
         }
         if (param.getDataType() != null && !param.getDataType().equals("")) {
             queryStr.add(" d.dataType='" + param.getDataType() + "' ");
+        }
+        if (param.getDownloadDate() != null && !param.getDownloadDate().equals("")) {
+            queryStr.add(" d.downloadDate='" + param.getDownloadDate() + "' ");
         }
 
         String query = "select  d from DataPackage d  ";

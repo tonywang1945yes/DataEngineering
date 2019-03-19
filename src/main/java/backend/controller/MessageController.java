@@ -1,12 +1,12 @@
 package backend.controller;
 
 
-import backend.entity.Corporation;
-import backend.entity.Custom;
-import backend.entity.Demo;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
 import backend.parameter.message.MessageGetParameter;
+import backend.parameter.message.MessageUpdateParameter;
+import backend.response.commonResponse.CorporationQueryResponse;
+import backend.response.commonResponse.CustomQueryResponse;
 import backend.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,6 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public void addBill(@RequestBody CorporationAddParameter param,
                         HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(param.getContact());
         service.addCorporation(param);
         response.setStatus(201);
     }
@@ -41,7 +40,6 @@ public class MessageController {
             produces = {"application/json", "application/xml"})
     public void addBill(@RequestBody CustomAddParameter param,
                         HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(param.getContact());
         service.addCustom(param);
         response.setStatus(201);
     }
@@ -57,10 +55,11 @@ public class MessageController {
 
     @RequestMapping(value = "/importance/{id}",
             method = RequestMethod.PUT,
+            consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
-    public void updateImportance(@PathVariable("id") String id,
+    public void updateImportance(@PathVariable("id") String id, @RequestBody MessageUpdateParameter param,
                                  HttpServletRequest request, HttpServletResponse response) {
-        service.markImportance(id);
+        service.markImportance(id, param);
         response.setStatus(201);
     }
 
@@ -77,9 +76,9 @@ public class MessageController {
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
     public @ResponseBody
-    Corporation[] getCorporation(MessageGetParameter param,
-                                 HttpServletRequest request, HttpServletResponse response) {
-        Corporation[] res = service.getCorporationMsg(param);
+    CorporationQueryResponse getCorporation(MessageGetParameter param,
+                                            HttpServletRequest request, HttpServletResponse response) {
+        CorporationQueryResponse res = service.getCorporationMsg(param);
         response.setStatus(201);
         return res;
     }
@@ -88,9 +87,20 @@ public class MessageController {
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
     public @ResponseBody
-    Custom[] getCustom(MessageGetParameter param,
-                       HttpServletRequest request, HttpServletResponse response) {
-        Custom[] res = service.getCustomMsg(param);
+    CustomQueryResponse getCustom(MessageGetParameter param,
+                                  HttpServletRequest request, HttpServletResponse response) {
+        CustomQueryResponse res = service.getCustomMsg(param);
+        response.setStatus(201);
+        return res;
+    }
+
+    @RequestMapping(value = "/total-message",
+            method = RequestMethod.GET,
+            produces = {"application/json", "application/xml"})
+    public @ResponseBody
+    int getCustom(MessageGetParameter param, HttpServletResponse response) {
+        int res = service.getCustomMsg(param).getTotal();
+        res += service.getCorporationMsg(param).getTotal();
         response.setStatus(201);
         return res;
     }

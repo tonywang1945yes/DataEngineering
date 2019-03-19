@@ -1,15 +1,18 @@
 package backend.parameter.message;
 
-public class MessageGetParameter {
-    String date;
-    int hasRead = 0;
-    int hasImportance = 0;
+/**
+ * @author Wen Sun
+ * @date 2019-3-19
+ */
+public class MessageUpdateParameter {
+    int hasRead;
+    int hasImportance;
 
-    public MessageGetParameter() {
+
+    public MessageUpdateParameter() {
     }
 
-    public MessageGetParameter(String date, int hasRead, int hasImportance) {
-        this.date = date;
+    public MessageUpdateParameter(int hasRead, int hasImportance) {
         this.hasRead = hasRead;
         this.hasImportance = hasImportance;
     }
@@ -28,13 +31,5 @@ public class MessageGetParameter {
 
     public void setHasImportance(int hasImportance) {
         this.hasImportance = hasImportance;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }

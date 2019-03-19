@@ -37,6 +37,10 @@ public class DataPackage {
     String city;
     @Column(name = "data_type")
     String dataType;
+    @Column(name = "downloads")
+    int downloads = 0;
+    @Column(name = "download_date")
+    String downloadDate;
 
     //TODO 出来挨打
 
@@ -49,7 +53,7 @@ public class DataPackage {
     public DataPackage() {
     }
 
-    public DataPackage(String id, String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url, String province, String city, String dataType) {
+    public DataPackage(String id, String year, String dataName, String publicationDate, String inputDate, String firstResult, String finalResult, String sourceUrl, String responseInstitute, String responsePerson, String url, String province, String city, String dataType, int downloads, String downloadDate) {
         this.id = id;
         this.year = year;
         this.dataName = dataName;
@@ -64,6 +68,8 @@ public class DataPackage {
         this.province = province;
         this.city = city;
         this.dataType = dataType;
+        this.downloads = downloads;
+        this.downloadDate = downloadDate;
     }
 
     public String getId() {
@@ -176,5 +182,21 @@ public class DataPackage {
 
     public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+
+    public int getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(int downloads) {
+        this.downloads = downloads;
+    }
+
+    public String getDownloadDate() {
+        return downloadDate;
+    }
+
+    public void setDownloadDate(String downloadDate) {
+        this.downloadDate = downloadDate;
     }
 }

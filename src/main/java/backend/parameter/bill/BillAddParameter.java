@@ -12,7 +12,7 @@ public class BillAddParameter {
     public BillAddParameter() {
     }
 
-    public BillAddParameter(String phoneNumber, String emailAddress, String uid, String province, String city, int dataType, int type) {
+    public BillAddParameter(String phoneNumber, String emailAddress, String uid, String province, String city, int dataType, int type,String dealer) {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.uid = uid;

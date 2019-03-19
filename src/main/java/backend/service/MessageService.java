@@ -7,6 +7,9 @@ import backend.entity.Custom;
 import backend.parameter.message.CorporationAddParameter;
 import backend.parameter.message.CustomAddParameter;
 import backend.parameter.message.MessageGetParameter;
+import backend.parameter.message.MessageUpdateParameter;
+import backend.response.commonResponse.CorporationQueryResponse;
+import backend.response.commonResponse.CustomQueryResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,11 +25,11 @@ public class MessageService {
     }
 
     public void addCorporation(CorporationAddParameter param) {
-        corporationService.add(new Corporation(param.getContact(), param.getUid(), param.getRequirement(), param.getStatus(), param.getImportance()));
+        corporationService.add(new Corporation(param.getUid(), param.getContact(), param.getRequirement(), param.getStatus(), param.getImportance()));
     }
 
     public void addCustom(CustomAddParameter param) {
-        customService.add(new Custom(param.getContact(), param.getUid(), param.getRequirement(), param.getStatus(), param.getImportance(), param.getYear(), param.getName(), param.getProvince(), param.getCity()));
+        customService.add(new Custom(param.getUid(), param.getContact(), param.getRequirement(), param.getStatus(), param.getImportance(), param.getYear(), param.getName(), param.getProvince(), param.getCity()));
     }
 
     public void markRead(String id) {
@@ -41,19 +44,19 @@ public class MessageService {
         }
     }
 
-    public void markImportance(String id) {
+    public void markImportance(String id, MessageUpdateParameter param) {
         if (id.startsWith("m1")) {
             Corporation c = corporationService.findByKey(id);
-            c.setImportance(1);
+            c.setImportance(param.getHasImportance());
             corporationService.update(c);
         } else if (id.startsWith("m2")) {
             Custom c = customService.findByKey(id);
-            c.setImportance(1);
+            c.setImportance(param.getHasImportance());
             customService.update(c);
         }
     }
 
-    public void deleteMsg(String id) {
+    public synchronized void deleteMsg(String id) {
         if (id.startsWith("m1")) {
             corporationService.delete(id);
         } else if (id.startsWith("m2")) {
@@ -61,9 +64,15 @@ public class MessageService {
         }
     }
 
-    public Corporation[] getCorporationMsg(MessageGetParameter param) {
+    public synchronized CorporationQueryResponse getCorporationMsg(MessageGetParameter param) {
         ArrayList<Corporation> res = new ArrayList<>();
-        if (param.getHasImportance() == 1) {
+        if (param.getHasRead() == -1 && param.getHasImportance() == -1) {
+            if (param.getDate() != null && !param.getDate().equals("")) {
+                res = corporationService.executeQuerySql("select c from Corporation c where c.date = '" + param.getDate() + "'");
+            } else {
+                res = corporationService.executeQuerySql("select c from Corporation c ");
+            }
+        } else if (param.getHasImportance() == 1) {
             res = corporationService.executeQuerySql("select c from Corporation c where c.importance = 1");
         } else {
             if (param.getHasRead() == 1) {
@@ -74,12 +83,18 @@ public class MessageService {
         }
         Corporation[] result = new Corporation[res.size()];
         result = res.toArray(result);
-        return result;
+        return new CorporationQueryResponse(result, res.size());
     }
 
-    public Custom[] getCustomMsg(MessageGetParameter param) {
+    public synchronized CustomQueryResponse getCustomMsg(MessageGetParameter param) {
         ArrayList<Custom> res = new ArrayList<>();
-        if (param.getHasImportance() == 1) {
+        if (param.getHasRead() == -1 && param.getHasImportance() == -1) {
+            if (param.getDate() != null && !param.getDate().equals("")) {
+                res = customService.executeQuerySql("select c from Custom c where c.date = '" + param.getDate() + "'");
+            } else {
+                res = customService.executeQuerySql("select c from Custom c ");
+            }
+        } else if (param.getHasImportance() == 1) {
             res = customService.executeQuerySql("select c from Custom c where c.importance = 1");
         } else {
             if (param.getHasRead() == 1) {
@@ -90,6 +105,6 @@ public class MessageService {
         }
         Custom[] result = new Custom[res.size()];
         result = res.toArray(result);
-        return result;
+        return new CustomQueryResponse(result, res.size());
     }
 }

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Corporation {
@@ -20,6 +22,8 @@ public class Corporation {
     int status = 0;//0,未读；1，已读
     @Column(name = "importance")
     int importance = 0;//0,不重要；1，重要
+    @Column(name = "date")
+    String date;
 
     public Corporation() {
     }
@@ -33,6 +37,9 @@ public class Corporation {
         this.requirement = requirement;
         this.status = status;
         this.importance = importance;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        this.date = date;
     }
 
     public String getMid() {

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Custom {
@@ -28,6 +30,8 @@ public class Custom {
     String province = "";
     @Column(name = "city")
     String city = "";
+    @Column(name = "date")
+    String date;
 
     public Custom() {
     }
@@ -45,6 +49,9 @@ public class Custom {
         this.name = name;
         this.province = province;
         this.city = city;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        this.date = date;
     }
 
     public String getMid() {
@@ -125,5 +132,21 @@ public class Custom {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
