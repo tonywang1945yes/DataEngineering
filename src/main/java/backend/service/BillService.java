@@ -27,7 +27,7 @@ public class BillService {
     }
 
     public void addBill(BillAddParameter param) {
-        billService.add(new Bill(param.getPhoneNumber(), param.getEmailAddress(), param.getUid(), param.getProvince(), param.getCity(), param.getDataType(), param.getType()));
+        billService.add(new Bill(param.getPhoneNumber(), param.getEmailAddress(), param.getUid(), param.getProvince(), param.getCity(), param.getType(), param.getDataType()));
         User user = userService.findByKey(param.getUid());
         user.setBills(user.getBills() + 1);
         if (param.getType() == 0) {
@@ -58,12 +58,14 @@ public class BillService {
                 }
             }
             ArrayList<DataPackage> datas = dataService.executeQuerySql(query);
-            DataPackage data = datas.get(0);
-            data.setDownloads(data.getDownloads() + 1);
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-            String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-            data.setDownloadDate(date);
-            dataService.update(data);
+            if (datas.size() != 0) {
+                DataPackage data = datas.get(0);
+                data.setDownloads(data.getDownloads() + 1);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+                String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+                data.setDownloadDate(date);
+                dataService.update(data);
+            }
         }
         userService.update(user);
     }
